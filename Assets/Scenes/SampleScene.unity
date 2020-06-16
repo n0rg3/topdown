@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 94784793}
   - component: {fileID: 94784792}
   - component: {fileID: 94784791}
-  - component: {fileID: 94784794}
   - component: {fileID: 94784795}
   m_Layer: 0
   m_Name: Player
@@ -153,7 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  Acceleration: 5
+  Acceleration: 3
+  smoothTime: 0.1
   shotDelay: 0.5
   shotgunDelay: 1
   shotSpeed: 50
@@ -206,27 +206,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &94784794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94784790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300b46ddb94694644a5deeb909753907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 2.21
-  viewAngle: 62
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visibleTargets: []
 --- !u!58 &94784795
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -833,7 +812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightDistance: 10
-  chassingSpeed: 5
+  chassingSpeed: 4
   roamingSpeed: 2
   moveSpot: {fileID: 1981556972}
   startWaitTime: 1
