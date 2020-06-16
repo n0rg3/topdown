@@ -31,36 +31,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //faceMouse();
     Movement();
     Shoot();
-    //MouseInput();
     }
     void Movement()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //float moveHorizontal = Input.GetAxis("Horizontal");
-	//float moveVertical = Input.GetAxis("Vertical");
-    //player.velocity = new Vector2(moveHorizontal, moveVertical);
-    //if(Input.GetKey("left shift"))
-        //{
-        //player.velocity = new Vector2(moveHorizontal * Acceleration, moveVertical * Acceleration);
-        //}
     }
-    void faceMouse()
-    {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        Vector2 direction = new Vector2
-            (mousePosition.x - transform.position.x,
-             mousePosition.y - transform.position.y);
-        transform.up = direction;
-        Crosshair.transform.localPosition = new Vector2(mousePos.x, mousePos.y);
-    }
-
     void Shoot()
     {
         if (Time.time > nextShotTime && Input.GetButton("Fire1"))
@@ -75,7 +54,7 @@ public class Player : MonoBehaviour
         if (Time.time > nextShotTime && Input.GetButton("Fire2"))
         {
             GameObject shotgunBullet = Instantiate(shotgunBulletPrefab, Shotgun.transform.position, Shotgun.transform.rotation);
-            shotgunBullet.GetComponent<Rigidbody2D>().AddForce(Shotgun.transform.up * shotSpeed, ForceMode2D.Impulse);
+            shotgunBullet.GetComponent<Rigidbody2D>().AddForce(Shotgun.transform.up * shotgunSpeed, ForceMode2D.Impulse);
             nextShotTime = Time.time + shotgunDelay;
             GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, Shotgun.transform.position, Shotgun.transform.rotation);
             Destroy(muzzleFlash, 0.2f);
