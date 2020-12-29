@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstacle
   - Zombie
+  - Obstacle
   - Explosive
+  - Bullet
   layers:
   - Default
   - TransparentFX
