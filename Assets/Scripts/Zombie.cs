@@ -12,6 +12,7 @@ public class Zombie : MonoBehaviour
     private float waitTime;
     public float startWaitTime;
     public float minX, maxX, minY, maxY;
+    public float offset;
 
     void Start()
     {
@@ -35,8 +36,10 @@ public class Zombie : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chassingSpeed * Time.deltaTime);
                 Vector2 direction = (target.position - transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(new Vector2(direction.x, direction.y));
-                transform.rotation = lookRotation;
+                //Quaternion lookRotation = Quaternion.LookRotation(new Vector2(direction.x, direction.y));
+                //transform.rotation = lookRotation;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
             }
         }
         else
@@ -54,8 +57,10 @@ public class Zombie : MonoBehaviour
             {
                 moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
                 Vector2 direction = (moveSpot.position - transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(new Vector2(direction.x, direction.y));
-                transform.rotation = lookRotation;
+                //Quaternion lookRotation = Quaternion.LookRotation(new Vector2(direction.x, direction.y));
+                //transform.rotation = lookRotation;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
                 waitTime = startWaitTime; 
             }
             else
