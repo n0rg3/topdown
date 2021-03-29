@@ -74,12 +74,5 @@ public class Player : MonoBehaviour
         {
             player.MovePosition(player.position + movement * Acceleration * Time.deltaTime);
         }
-        CameraFollow();
     }
-    void CameraFollow()
-        {
-        Transform camera = GameObject.FindGameObjectWithTag("MainCamera").gameObject.transform;
-        Vector3 cameraVelocity = Vector3.zero;
-        camera.position = Vector3.SmoothDamp(camera.position, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10), ref cameraVelocity, smoothTime);
-        }
 }
