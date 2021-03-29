@@ -4,22 +4,23 @@ using System.Collections.Generic;
 
 public class FieldOfView : MonoBehaviour {
 
+    [Range(0, 10)]
 	public float viewRadius;
-	[Range(0,360)]
+	[Range(0, 360)]
 	public float viewAngle;
 
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
-
-	[HideInInspector]
+    public float chaseSpeed;
 	public List<Transform> visibleTargets = new List<Transform>();
 
-	void Start() {
+	void Start()
+    {
 		StartCoroutine ("FindTargetsWithDelay", .2f);
 	}
 
-
-	IEnumerator FindTargetsWithDelay(float delay) {
+	IEnumerator FindTargetsWithDelay(float delay)
+    {
 		while (true) {
 			yield return new WaitForSeconds (delay);
 			FindVisibleTargets ();
@@ -34,7 +35,7 @@ public class FieldOfView : MonoBehaviour {
         {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.up, dirToTarget) < viewAngle / 2)
+            if (Vector3.Angle(transform.right, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
 				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask))
@@ -43,11 +44,11 @@ public class FieldOfView : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 
 	public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
 		if (!angleIsGlobal) {
-			angleInDegrees += transform.eulerAngles.y;
+			angleInDegrees += transform.eulerAngles.z;
 		}
 		return new Vector2(Mathf.Cos(angleInDegrees * Mathf.Deg2Rad),Mathf.Sin(angleInDegrees * Mathf.Deg2Rad));
 	}
