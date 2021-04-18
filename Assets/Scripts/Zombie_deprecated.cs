@@ -22,17 +22,17 @@ public class Zombie_deprecated : MonoBehaviour
         target = PlayerManager.instance.Player.transform;
     }
 
-    //void Update()
-    //{
-    //    transform.position = Vector2.MoveTowards(transform.position, wayPiont, roamingSpeed * Time.deltaTime);
-    //    Vector2 lookDir = wayPiont - enemy.position;
-    //    float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-    //    enemy.rotation = angle;
-    //    if (Vector2.Distance(transform.position, wayPiont) < range)
-    //    {
-    //        SetNewDestination();
-    //    }
-    //}
+    void Update()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, wayPiont, roamingSpeed * Time.deltaTime);
+        Vector2 lookDir = wayPiont - enemy.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        enemy.rotation = angle;
+        if (Vector2.Distance(transform.position, wayPiont) < range)
+        {
+            SetNewDestination();
+        }
+    }
 
     void SetNewDestination()
     {

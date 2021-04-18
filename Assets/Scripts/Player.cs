@@ -14,18 +14,22 @@ public class Player : MonoBehaviour
     public float shotgunDelay;
     public float shotSpeed;
     public float shotgunSpeed;
+    [Header("Health")]
+    public int maxHealth = 100;
+    public int currentHealth;
     public GameObject Gun;
     public GameObject Shotgun;
     public GameObject bulletPrefab;
     public GameObject shotgunBulletPrefab;
     public GameObject muzzleFlashPrefab;
-    public GameObject Crosshair;
+    //public GameObject Crosshair;
     Rigidbody2D player;
     Vector2 movement;
     Vector2 mousePos;
     float nextShotTime;
     void Start()
     {
+        currentHealth = maxHealth;
         player = GetComponent<Rigidbody2D>();
     }
 
@@ -69,7 +73,7 @@ public class Player : MonoBehaviour
         Vector2 lookDir = mousePos - player.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         player.rotation = angle;
-        Crosshair.transform.localPosition = new Vector2(mousePos.x, mousePos.y);
+        //Crosshair.transform.localPosition = new Vector2(mousePos.x, mousePos.y);
         if(Input.GetButton("Fire3"))
         {
             player.MovePosition(player.position + movement * Acceleration * Time.deltaTime);
